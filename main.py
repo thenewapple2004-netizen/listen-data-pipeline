@@ -1,27 +1,37 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
-# Import the database logic (assuming you moved it to a 'db' folder based on your import!)
-from db.db import create_db_and_tables 
+# Database engine and table creation
+from db.db import create_db_and_tables
 
-# The lifespan manager runs before the server starts taking requests
+# Import models so SQLModel registers them before create_all() is called
+import models.models  # noqa: F401
+
+# Ingestion router
+from routes.ingestion import router as ingestion_router
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # This triggers the connection test from your database file
     print("Initializing application...")
-    create_db_and_tables()
+    create_db_and_tables()  # Connects to DB and creates all tables
     yield
     print("Application shutting down...")
 
-# Initialize the FastAPI app with the lifespan
-app = FastAPI(lifespan=lifespan, title="FastAPI SQLModel Server")
 
-# --- Routes ---
+app = FastAPI(
+    lifespan=lifespan,
+    title="Listen Data Pipeline",
+    description="Batch ingestion API for Urdu words and sentences into the urdu_dict database.",
+    version="1.0.0",
+)
 
-@app.get("/")
+# ── Routers ──────────────────────────────────
+app.include_router(ingestion_router)
+
+
+# ── Health Check ─────────────────────────────
+@app.get("/", tags=["Health"])
 def root():
-    """A simple health check route."""
-    return {"status": "ok", "message": "Server is running and the database connection was tested!"}
-
-# I have temporarily removed the /users/ routes. 
-# You can paste them back in once you create your models.py file!
+    """Health check — confirms server is up and database is connected."""
+    return {"status": "ok", "message": "Listen Data Pipeline is running!"}
