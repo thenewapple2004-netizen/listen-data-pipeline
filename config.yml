@@ -1,0 +1,25 @@
+auto_ingest:
+  # Cron format: minute hour day month day_of_week
+  # --- Common Schedules you can copy/paste ---
+  # "* * * * *"    = Every 1 minute (for testing)
+  # "*/15 * * * *" = Every 15 minutes
+  # "0 * * * *"    = Every 1 hour
+  # "0 */2 * * *"  = Every 2 hours
+  # "0 */5 * * *"  = Every 5 hours
+  # ----------------------------------------
+  cron_schedule: "0 */2 * * *"
+  words_count: 100
+  sentences_count: 100
+  topics: 
+    - "daily life"
+    - "emotions"
+    - "food"
+    - "nature"
+    - "technology"
+    - "sports"
+    - "education"
+    - "business"
+    - "weather"
+    - "animals"
+    - "fruits"
+    

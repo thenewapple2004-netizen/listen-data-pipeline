@@ -10,13 +10,22 @@ import models.models  # noqa: F401
 # Ingestion router
 from routes.ingestion import router as ingestion_router
 
+# Background Cron Scheduler
+from services.cron import start_scheduler
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Initializing application...")
     create_db_and_tables()  # Connects to DB and creates all tables
+    
+    # Start the automated cron job scheduler in the background
+    scheduler = start_scheduler()
+    
     yield
     print("Application shutting down...")
+    if scheduler:
+        scheduler.shutdown()
 
 
 app = FastAPI(
