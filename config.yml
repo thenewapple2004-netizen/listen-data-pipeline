@@ -7,19 +7,100 @@ auto_ingest:
   # "0 */2 * * *"  = Every 2 hours
   # "0 */5 * * *"  = Every 5 hours
   # ----------------------------------------
-  cron_schedule: "0 */2 * * *"
-  words_count: 100
-  sentences_count: 100
-  topics: 
-    - "daily life"
-    - "emotions"
-    - "food"
-    - "nature"
-    - "technology"
-    - "sports"
-    - "education"
-    - "business"
-    - "weather"
-    - "animals"
-    - "fruits"
+  cron_schedule: "0 * * * *" 
+
+  # ==========================================================
+  # MODE 1: TARGETED SENTENCES (FOR YOUR 60+ WORDS)
+  # ==========================================================
+  # Instructions: Uncomment these 3 lines and comment out Mode 2 below.
+  words_count: 0
+  sentences_count: 200
+  targeted_generation: true
+  priority_words:
+    - "بالکل"
+    - "ہوائی حادثہ"
+    - "ہوائی جہاز"
+    - "سب"
+    - "بھی"
+    - "آمد"
+    - "السلام علیکم"
+    - "اے ٹی ایم"
+    - "گنجا"
+    - "ساحل"
+    - "چونچ"
+    - "ریچھ"
+    - "داڑھی"
+    - "بستر"
+    - "بنچ"
+    - "سائیکل"
+    - "پرندہ"
+    - "دونوں"
+    - "پل"
+    - "لاؤ"
+    - "بلب"
+    - "کارٹون"
+    - "چمپینزی"
+    - "رنگین پنسلیں"
+    - "گائے"
+    - "کوا"
+    - "الماری"
+    - "ہرن"
+    - "کتا"
+    - "ہاتھ نہ لگاؤ"
+    - "دروازہ"
+    - "ہاتھی"
+    - "معاف کیجیے"
+    - "فیس لوشن"
+    - "پنکھا"
+    - "باغ"
+    - "جنریٹر"
+    - "خدا حافظ"
+    - "صبح بخیر"
+    - "اچھا دن گزاریں"
+    - "ہیلو"
+    - "میری شکایت ہے"
+    - "بایاں ہاتھ"
+    - "لائف جیکٹ"
+    - "میرا"
+    - "موبائل فون"
+    - "ناخن تراش"
+    - "مور"
+    - "پولیس کار"
+    - "استرا"
+    - "س"
+    - "شیمپو"
+    - "شاور"
+    - "دھوپ کے چشمے"
+    - "شکریہ"
+    - "ٹشو"
+    - "ٹوتھ برش"
+    - "ٹوتھ پیسٹ"
+    - "چھتری"
+    - "پانی"
+    - "ہم"
+    - "شاباش"
+    - "تم"
+
+  # ==========================================================
+  # MODE 2: RANDOM DISCOVERY (PREVIOUS LOGIC)
+  # ==========================================================
+  # Instructions: Uncomment these 3 lines and comment out Mode 1 above.
+  # words_count: 20
+  # sentences_count: 20
+  # targeted_generation: false
+
+  # ----------------------------------------------------------
+  
+  # topics: 
+  #   - "daily life"
+  #   - "emotions"
+  #   - "food"
+  #   - "nature"
+  #   - "technology"
+  #   - "sports"
+  #   - "education"
+  #   - "business"
+  #   - "weather"
+  #   - "animals"
+  #   - "fruits"
     
